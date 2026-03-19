@@ -1,4 +1,3 @@
-//your JS code here. If required.
 let player1 = "";
 let player2 = "";
 let currentPlayer = "X";
@@ -18,14 +17,15 @@ const winPatterns = [
 
 // Start game
 document.getElementById("submit").addEventListener("click", () => {
-  player1 = document.getElementById("player-1").value;
-  player2 = document.getElementById("player-2").value;
+  player1 = document.getElementById("player1").value;
+  player2 = document.getElementById("player2").value;
 
   document.getElementById("game").style.display = "block";
-  document.querySelector(".message").textContent = `${player1}, you're up`;
+  document.querySelector(".message").textContent =
+    `${player1}, you're up`;
 });
 
-// Cell click
+// Add click to all cells
 document.querySelectorAll(".cell").forEach(cell => {
   cell.addEventListener("click", handleClick);
 });
@@ -35,8 +35,10 @@ function handleClick(e) {
 
   if (cell.textContent !== "" || !gameActive) return;
 
+  // Put x or o
   cell.textContent = currentPlayer.toLowerCase();
 
+  // Check win
   if (checkWin()) {
     const winner = currentPlayer === "X" ? player1 : player2;
     document.querySelector(".message").textContent =
@@ -58,9 +60,9 @@ function checkWin() {
   return winPatterns.some(pattern => {
     const [a, b, c] = pattern;
     return (
-      document.getElementById(a).textContent === currentPlayer &&
-      document.getElementById(b).textContent === currentPlayer &&
-      document.getElementById(c).textContent === currentPlayer
+      document.getElementById(a).textContent === currentPlayer.toLowerCase() &&
+      document.getElementById(b).textContent === currentPlayer.toLowerCase() &&
+      document.getElementById(c).textContent === currentPlayer.toLowerCase()
     );
   });
 }
