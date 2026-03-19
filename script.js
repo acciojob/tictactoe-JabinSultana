@@ -35,7 +35,7 @@ function handleClick(e) {
 
   if (cell.textContent !== "" || !gameActive) return;
 
-  cell.textContent = currentPlayer;
+  cell.textContent = currentPlayer.toLowerCase();
 
   if (checkWin()) {
     const winner = currentPlayer === "X" ? player1 : player2;
